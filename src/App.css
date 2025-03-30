@@ -1,50 +1,82 @@
-.App {
-  text-align: center;
-  display: grid;
-  grid-template-columns: 40px 40px 40px;
-  gap: 10px;
-  margin: auto;
-  align-items: center;
+/* Center the entire app */
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
 }
 
-.box{
-  height: 40px;
-  border: 1px solid rgb(204, 201, 201);
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.box:hover{
-  background-color: rgb(204, 201, 201);
-}
-
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Centers everything horizontally */
+  justify-content: center; /* Centers everything vertically */
+  gap: 20px;
+}
+
+/* Grid Styling */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  gap: 15px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+/* Box Styling */
+.box {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #dcdcdc;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+/* Hover effect */
+.box:hover {
+  background-color: #e6e6e6;
+  transform: scale(1.1);
+}
+
+/* Clicked (Selected) Box */
+.box.selected {
+  background-color: #e6e6e6;
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Clear Button Styling */
+.clear-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid #dcdcdc;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  
+  /* Center the button */
+  display: block;
+  margin: 20px auto 0; /* Auto horizontally centers the button */
+}
+
+/* Hover Effect on Button */
+.clear-btn:hover {
+  border-color: rgb(77, 77, 247);
+  background-color: rgba(77, 77, 247, 0.1);
+  transform: scale(1.05);
+}
+
+/* Button Click Effect */
+.clear-btn:active {
+  transform: scale(0.95);
+  background-color: rgba(77, 77, 247, 0.2);
+}

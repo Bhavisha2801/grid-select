@@ -9,45 +9,42 @@ interface Box {
 
 function App() {
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
-  const increaseCount = () => {
-    setCount(prev => prev + 1)
-  }
-
-  const [clickedBoxes, setClickedBoxes] = useState<Box>({
-    box : 0,
-    countOfBox : 0
-  });
-
-  const [addedBoxes, setAddedBoxes] = useState<number[]>([]);
-
+  const [clickedBoxes, setClickedBoxes] = useState<{ [key: number]: number }>({});
 
   const data = [
     1,2,3,4,5,6,7,8,9
   ]
 
   const clickBox = (item: number) => {
-    setCount(prev => prev + 1);
-    console.log(count)
+    if(count > 9 || clickedBoxes[item]) return;
+
     setClickedBoxes((prev) => ({
       ...prev,
-      box: prev.box + 1,
-      countOfBox: prev.countOfBox + 1,
+      [item]: count,
     }));
-    setAddedBoxes((prev) => [...prev, item]);
+    setCount(prev => prev + 1);
+  };
+
+
+  const clearSelection = () => {
+    setClickedBoxes({});
+    setCount(1)
   }
 
-
-  console.log(clickedBoxes)
+  console.log(clickedBoxes, 'clicked boxes')
 
   return (
     <div className="App">
+      <div className='grid'>
       {
         data.map((item: number) => {
-          return <div className='box' onClick={() => clickBox(item)} key={item}>{addedBoxes.includes(item) ? clickedBoxes.countOfBox : ''}</div>
+          return <div className={`box ${clickedBoxes[item] ? 'selected' : ''}`} onClick={() => clickBox(item)} key={item}>{clickedBoxes[item] || ''}</div>
         })
       }
+      </div>
+      <button className='clear-btn' onClick={() => clearSelection()} >Clear</button>
     </div>
   );
 }
